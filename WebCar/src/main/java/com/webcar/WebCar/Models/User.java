@@ -1,5 +1,7 @@
 package com.webcar.WebCar.Models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +13,8 @@ import java.util.Set;
 @Table(name = "usr")
 public class User  implements UserDetails {
 
+    @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,78 +23,29 @@ public class User  implements UserDetails {
   
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
     private Set<Role> roles;
-
+    @Getter
+    @Setter
     private String username;
+    @Getter
+    @Setter
     private String password;
+    @Getter
+    @Setter
     private boolean active;
 
-    private String name, surname;
-
-    public User(String email, String name, String surname, String  password) {
-        this.name = name;
-        this.surname = surname;
-        this.username = email;
-        this.password = password;
-    }
-
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-  
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    @Getter
+    @Setter
+    private String name;
+    @Getter
+    @Setter
+    private String surname;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-    }
-  
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override
@@ -111,9 +66,5 @@ public class User  implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive();
-    }
-  
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
