@@ -1,11 +1,11 @@
-package Models;
+package com.webcar.WebCar.Models;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Collection;
 
@@ -14,7 +14,7 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
     private Long id;
